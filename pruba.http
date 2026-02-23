@@ -1,2 +1,13 @@
 ###
-GET http://localhost:3000/
+POST http://localhost:3000/api/products
+Content-Type: application/json
+
+{
+  "name": "Teclado mecánico",
+  "description": "Switch blue",
+  "price": 99.99,
+  "stock": 10
+}
+
+###
+GET http://localhost:3000/api/products
