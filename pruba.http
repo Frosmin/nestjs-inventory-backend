@@ -3,7 +3,7 @@ POST http://localhost:3000/api/products
 Content-Type: application/json
 
 {
-  "name": "Teclado mecánico4",
+  "name": "juanito peres2",
   "description": "Switch blue",
   "price": 99.99,
   "stock": 10
@@ -13,4 +13,19 @@ Content-Type: application/json
 GET http://localhost:3000/api/products
 
 ###
-GET http://localhost:3000/api/products/ca0382f4-62b7-48a3-a78a-46298c0001cc
+GET http://localhost:3000/api/products/4e6719cb-e1fc-4790-8159-aec171530bba
+
+
+###
+PATCH http://localhost:3000/api/products/650098c4-52ab-4a61-8ac5-d96a8e556d34
+Content-Type: application/json
+
+{
+  "name": "simon pepesas",
+  "description": "Switch blue",
+  "price": 990.99,
+  "stock": 11
+}
+
+###
+DELETE  http://localhost:3000/api/products/bf6a50b4-07d5-4438-8ea9-4c746b42cea2

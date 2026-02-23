@@ -7,9 +7,9 @@ import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
 @ApiTags('products')
 @Controller('products')
 export class ProductsController {
-  constructor(private readonly productsService: ProductsService) {}
+  constructor(private readonly productsService: ProductsService) { }
 
-@Post()
+  @Post()
   @ApiOperation({ summary: 'Crear un nuevo producto' }) // Describe qué hace la ruta en Swagger
   @ApiResponse({ status: 201, description: 'El producto fue creado exitosamente.' })
   @ApiResponse({ status: 400, description: 'Datos inválidos (Bad Request).' })
@@ -19,25 +19,35 @@ export class ProductsController {
   }
 
   @Get()
-  @ApiOperation({summary: 'devulve todos los productos'})
-  @ApiResponse({status: 201, description: 'productos'})
-  @ApiResponse({status :400, description: 'fallo en la peticion'})
+  @ApiOperation({ summary: 'devulve todos los productos' })
+  @ApiResponse({ status: 201, description: 'productos' })
+  @ApiResponse({ status: 400, description: 'fallo en la peticion' })
   findAll() {
     return this.productsService.findAll();
   }
 
   @Get(':id')
+  @ApiOperation({ summary: 'devulve solo un producto' })
+  @ApiResponse({ status: 201, description: 'producto' })
+  @ApiResponse({ status: 400, description: 'fallo en la peticion' })
   findOne(@Param('id') id: string) {
     return this.productsService.findOne(id);
   }
 
   @Patch(':id')
+  @ApiOperation({ summary: 'Actualiza un producto' })
+  @ApiResponse({ status: 201, description: 'producto' })
+  @ApiResponse({ status: 400, description: 'fallo en la peticion' })
   update(@Param('id') id: string, @Body() updateProductDto: UpdateProductDto) {
-    return this.productsService.update(+id, updateProductDto);
+    return this.productsService.update(id, updateProductDto);
   }
 
   @Delete(':id')
+
+  @ApiOperation({ summary: 'Elimina un producto' })
+  @ApiResponse({ status: 201, description: 'producto' })
+  @ApiResponse({ status: 400, description: 'fallo en la peticion' })
   remove(@Param('id') id: string) {
-    return this.productsService.remove(+id);
+    return this.productsService.remove(id);
   }
 }
