@@ -19,13 +19,16 @@ export class ProductsController {
   }
 
   @Get()
+  @ApiOperation({summary: 'devulve todos los productos'})
+  @ApiResponse({status: 201, description: 'productos'})
+  @ApiResponse({status :400, description: 'fallo en la peticion'})
   findAll() {
     return this.productsService.findAll();
   }
 
   @Get(':id')
   findOne(@Param('id') id: string) {
-    return this.productsService.findOne(+id);
+    return this.productsService.findOne(id);
   }
 
   @Patch(':id')

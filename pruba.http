@@ -3,7 +3,7 @@ POST http://localhost:3000/api/products
 Content-Type: application/json
 
 {
-  "name": "Teclado mecánico",
+  "name": "Teclado mecánico4",
   "description": "Switch blue",
   "price": 99.99,
   "stock": 10
@@ -11,3 +11,6 @@ Content-Type: application/json
 
 ###
 GET http://localhost:3000/api/products
+
+###
+GET http://localhost:3000/api/products/ca0382f4-62b7-48a3-a78a-46298c0001cc
