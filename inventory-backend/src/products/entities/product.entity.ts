@@ -4,14 +4,16 @@ import {
   Entity,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
+  Check
 } from 'typeorm';
 
-@Entity({ name: 'products' })
+@Entity('products')
+@Check('"stock" >= 0')
 export class Product {
   @PrimaryGeneratedColumn('uuid')
   id!: string;
 
-  @Column({ type: 'varchar', length: 120 })
+  @Column({ type: 'varchar', length: 120, unique: true })
   name!: string;
 
   @Column({ type: 'numeric', precision: 10, scale: 2, default: 0 })
@@ -20,9 +22,12 @@ export class Product {
   @Column({ type: 'int', default: 0 })
   stock!: number;
 
-  @CreateDateColumn({ name: 'created_at' })
+  @Column({ type: 'boolean', default: true })
+  isActive!: boolean;
+
+  @CreateDateColumn()
   createdAt!: Date;
 
-  @UpdateDateColumn({ name: 'updated_at' })
+  @UpdateDateColumn()
   updatedAt!: Date;
 }
