@@ -10,11 +10,11 @@ export class ProductsController {
   constructor(private readonly productsService: ProductsService) { }
 
   @Post()
-  @ApiOperation({ summary: 'Crear un nuevo producto' }) // Describe qué hace la ruta en Swagger
+  @ApiOperation({ summary: 'Crear un nuevo producto' }) 
   @ApiResponse({ status: 201, description: 'El producto fue creado exitosamente.' })
   @ApiResponse({ status: 400, description: 'Datos inválidos (Bad Request).' })
   create(@Body() createProductDto: CreateProductDto) {
-    // Si la petición llega hasta aquí, significa que pasó todas las validaciones de seguridad
+
     return this.productsService.create(createProductDto);
   }
 
