@@ -1,20 +1,34 @@
-import { Controller, Get, Post, Body, Patch, Param, Delete } from '@nestjs/common';
+import {
+  Controller,
+  Get,
+  Post,
+  Body,
+  Patch,
+  Param,
+  Delete,
+} from '@nestjs/common';
 import { ProductsService } from './products.service';
 import { CreateProductDto } from './dto/create-product.dto';
 import { UpdateProductDto } from './dto/update-product.dto';
 import { ApiOperation, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { HistoryService } from 'src/history/history.service';
 
 @ApiTags('products')
 @Controller('products')
 export class ProductsController {
-  constructor(private readonly productsService: ProductsService) { }
+  constructor(
+    private readonly productsService: ProductsService,
+    private readonly historyService: HistoryService,
+  ) {}
 
   @Post()
-  @ApiOperation({ summary: 'Crear un nuevo producto' }) 
-  @ApiResponse({ status: 201, description: 'El producto fue creado exitosamente.' })
+  @ApiOperation({ summary: 'Crear un nuevo producto' })
+  @ApiResponse({
+    status: 201,
+    description: 'El producto fue creado exitosamente.',
+  })
   @ApiResponse({ status: 400, description: 'Datos inválidos (Bad Request).' })
   create(@Body() createProductDto: CreateProductDto) {
-
     return this.productsService.create(createProductDto);
   }
 
@@ -43,11 +57,23 @@ export class ProductsController {
   }
 
   @Delete(':id')
-
   @ApiOperation({ summary: 'Elimina un producto' })
   @ApiResponse({ status: 201, description: 'producto' })
   @ApiResponse({ status: 400, description: 'fallo en la peticion' })
   remove(@Param('id') id: string) {
     return this.productsService.remove(id);
+  }
+
+  @Get(':id/history')
+  @ApiOperation({
+    summary: 'Obtener el historial de modificaciones de un producto',
+  })
+  @ApiResponse({
+    status: 200,
+    description: 'Historial de cambios devuelto exitosamente',
+  })
+  @ApiResponse({ status: 404, description: 'Producto no encontrado' })
+  getHistory(@Param('id') id: string) {
+    return this.historyService.getHistoryByProductId(id);
   }
 }
