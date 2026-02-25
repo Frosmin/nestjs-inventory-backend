@@ -1,10 +1,12 @@
+import { Histories } from 'src/history/entities/history.entity';
 import {
   Column,
   CreateDateColumn,
   Entity,
   PrimaryGeneratedColumn,
   UpdateDateColumn,
-  Check
+  Check,
+  OneToMany
 } from 'typeorm';
 
 @Entity('products')
@@ -23,11 +25,14 @@ export class Product {
   stock!: number;
 
   @Column({ type: 'boolean', default: true })
-  isActive!: boolean;
+  is_active!: boolean;
 
   @CreateDateColumn()
-  createdAt!: Date;
+  created_at!: Date;
 
   @UpdateDateColumn()
-  updatedAt!: Date;
+  updated_at!: Date;
+
+  @OneToMany(() => Histories, (history) => history.product)
+  histories!: Histories[];
 }

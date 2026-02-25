@@ -29,3 +29,26 @@ Content-Type: application/json
 
 ###
 DELETE  http://localhost:3000/api/products/bf6a50b4-07d5-4438-8ea9-4c746b42cea2
+
+
+###
+POST http://localhost:3000/api/products
+Content-Type: application/json
+
+{
+  "name": "Laptop ThinkPad T14",
+  "price": 1200.50,
+  "stock": 10
+}
+
+###
+PATCH http://localhost:3000/api/products/97c7960a-2a3f-4714-a30a-afbec016ffe2
+Content-Type: application/json
+
+{
+  "price": 300.00,
+  "stock": 7
+}
+
+###
+GET http://localhost:3000/api/products/97c7960a-2a3f-4714-a30a-afbec016ffe2/history
