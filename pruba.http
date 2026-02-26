@@ -52,3 +52,55 @@ Content-Type: application/json
 
 ###
 GET http://localhost:3000/api/products/97c7960a-2a3f-4714-a30a-afbec016ffe2/history
+
+
+
+
+
+
+
+# @name createProduct
+POST http://localhost:3000/api/products
+Content-Type: application/json
+
+{
+  "name": "Monitor Gamer 144Hz",
+  "price": 250.00,
+  "stock": 10
+}
+
+POST http://localhost:3000/api/orders
+Content-Type: application/json
+
+{
+  "client_name": "Simon Abasto",
+  "address": "Heroínas y Ayacucho",
+  "items": [
+    {
+      "productId": "7f93d10a-77cd-41bd-bb9e-d940691c9d57",
+      "quantity": 3
+    }
+  ]
+}
+# Resultado esperado: 201 Created con "Orden creada exitosamente".
+
+
+
+GET http://localhost:3000/api/products/EL_ID_DEL_PRODUCTO
+
+
+
+POST http://localhost:3000/api/orders
+Content-Type: application/json
+
+{
+  "customer_name": "Usuario Invalido",
+  "address": "Calle Falsa 123",
+  "items": [
+    {
+      "productId": "EL_ID_DEL_PRODUCTO",
+      "quantity": 100
+    }
+  ]
+}
+
