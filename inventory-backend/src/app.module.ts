@@ -6,6 +6,8 @@ import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule } from '@nestjs/config';
 import { HistoryModule } from './history/history.module';
 import { OrdersModule } from './orders/orders.module';
+import { MovesModule } from './moves/moves.module';
+import { MovementsModule } from './movements/movements.module';
 
 @Module({
   imports: [ProductsModule,
@@ -32,7 +34,13 @@ import { OrdersModule } from './orders/orders.module';
     HistoryModule,
 
 
-    OrdersModule,],
+    OrdersModule,
+
+
+    MovesModule,
+
+
+    MovementsModule,],
   controllers: [AppController],
   providers: [AppService],
 
